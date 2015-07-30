@@ -1,6 +1,6 @@
 # Standard ML Basis Library
 
-This repository and associated wiki provides a platform for managing changes to the [Standard ML Basis Library](http://sml-family.org/Basis/) specification.
+This repository and associated [wiki](https://github.com/SMLFamily/BasisLibrary/wiki) provides a platform for managing changes to the [Standard ML Basis Library](http://sml-family.org/Basis/) specification.
 
 ## Scope
 The SML Basis Library was purposefully designed to be limited in its scope.  Specifically, it only included three kinds of components:
