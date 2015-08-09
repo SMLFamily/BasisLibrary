@@ -8,4 +8,9 @@ signature VECTOR_EXT =
 
     include VECTOR
 
+    val toList : 'a vector -> 'a list
+
+    val append  : 'a vector * 'a -> 'a vector
+    val prepend : 'a * 'a vector -> 'a vector
+
   end

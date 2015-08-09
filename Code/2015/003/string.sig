@@ -8,4 +8,10 @@ signature STRING_EXT =
 
     include STRING
 
+    val rev : string -> string
+
+    val implodeRev : char list -> string
+
+    val concatWithMap : string -> ('a -> string) -> 'a list -> string
+
   end

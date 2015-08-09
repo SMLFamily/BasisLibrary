@@ -8,4 +8,9 @@ signature ARRAY_EXT =
 
     include ARRAY
 
+    val toList : 'a array -> 'a list
+
+    val fromVector : 'a vector -> 'a array
+    val toVector   : 'a array -> 'a vector
+
   end

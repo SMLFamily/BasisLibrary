@@ -8,4 +8,7 @@ signature OPTION_EXT =
 
     include OPTION
 
+    val isNone : 'a option -> bool
+    val fold : ('a * 'b -> 'b) -> 'b -> 'a option -> 'b
+
   end
