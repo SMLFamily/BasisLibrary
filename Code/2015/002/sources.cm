@@ -1,0 +1,17 @@
+(* sources.cm
+ *
+ * SML/NJ CM file for SML Basis Library Proposal 2015-002.
+ *)
+
+Library
+
+  signature EITHER
+
+  structure Either
+
+is
+
+  $/basis.cm
+
+  either.sig
+  either.sml

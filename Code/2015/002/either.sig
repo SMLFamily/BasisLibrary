@@ -8,19 +8,19 @@ signature EITHER =
 
     datatype ('left, 'right) either = INL of 'left | INR of 'right
 
-    val isLeft : ('left, 'right) sum -> bool
-    val isRight : ('left, 'right) sum -> bool
+    val isLeft : ('left, 'right) either -> bool
+    val isRight : ('left, 'right) either -> bool
 
-    val asLeft : ('left, 'right) sum -> 'left option
-    val asRight : ('left, 'right) sum -> 'right option
+    val asLeft : ('left, 'right) either -> 'left option
+    val asRight : ('left, 'right) either -> 'right option
 
     val map : ('ldom -> 'lrng) * ('rdom -> 'rrng)
-	      -> ('ldom, 'rdom) sum
-		-> ('lrng, 'rrng) sum
+	      -> ('ldom, 'rdom) either
+		-> ('lrng, 'rrng) either
     val app : ('left -> unit) * ('right -> unit)
-	      -> ('left, 'right) sum
+	      -> ('left, 'right) either
 		-> unit
 
-    val partition : (('left, 'right) sum) list -> ('left list * 'right list)
+    val partition : (('left, 'right) either) list -> ('left list * 'right list)
 
   end

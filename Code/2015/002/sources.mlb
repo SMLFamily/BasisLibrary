@@ -1,0 +1,19 @@
+(* sources.cm
+ *
+ * MLB file for SML Basis Library Proposal 2015-002.
+ *)
+
+local
+
+  $(SML_LIB)/basis/basis.mlb
+
+  either.sig
+  either.sml
+
+in
+
+  signature EITHER
+
+  structure Either
+
+end
