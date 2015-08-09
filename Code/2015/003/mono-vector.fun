@@ -1,12 +1,12 @@
-(* vector.sml
+(* mono-vector.fun
  *
  * Reference code for SML Basis Library Proposal 2015-003.
  *)
 
-structure VectorExt : VECTOR_EXT =
+functor MonoVectorExtFn (V : MONO_VECTOR) : MONO_VECTOR_EXT =
   struct
 
-    open Vector
+    open V
 
     fun toList v = List.tabulate(length v, fn i => sub(v, i))
 

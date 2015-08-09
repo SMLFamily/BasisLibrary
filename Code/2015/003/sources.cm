@@ -1,0 +1,58 @@
+(* sources.cm
+ *
+ * SML/NJ CM file for SML Basis Library Proposal 2015-003.
+ *
+ * The Basis signatures and stuctures in this reference implementation
+ * have the suffix "_EXT" (resp. Ext) on their names.  The monomorphic
+ * array and vector types are supported by functors that extend the
+ * existing implementation.
+ *)
+
+Library
+
+  signature ARRAY_EXT
+  signature LIST_EXT
+  signature LIST_PAIR_EXT
+  signature MONO_ARRAY_EXT
+  signature MONO_VECTOR_EXT
+  signature OPTION_EXT
+  signature STRING_EXT
+  signature VECTOR_EXT
+
+  structure ArrayExt
+  structure ListExt
+  structure ListPairExt
+  structure OptionExt
+  structure StringExt
+  structure VectorExt
+
+  functor MonoArrayExtFn
+  functor MonoVectorExtFn
+
+is
+
+  $/basis.cm
+
+  array.sig
+  array.sml
+
+  list-pair.sig
+  list-pair.sml
+
+  list.sig
+  list.sml
+
+  mono-array.sig
+  mono-array.fun
+
+  mono-vector.sig
+  mono-vector.fun
+
+  option.sig
+  option.sml
+
+  string.sig
+  string.sml
+
+  vector.sig
+  vector.sml
