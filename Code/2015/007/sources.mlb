@@ -1,0 +1,19 @@
+(* sources.cm
+ *
+ * MLB file for SML Basis Library Proposal 2015-007.
+ *)
+
+local
+
+  $(SML_LIB)/basis/basis.mlb
+
+  ref.sig
+  ref.sml
+
+in
+
+  signature REF
+
+  structure Ref
+
+end

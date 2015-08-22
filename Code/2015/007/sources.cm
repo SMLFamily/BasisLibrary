@@ -1,0 +1,17 @@
+(* sources.cm
+ *
+ * SML/NJ CM file for SML Basis Library Proposal 2015-007.
+ *)
+
+Library
+
+  signature REF
+
+  structure Ref
+
+is
+
+  $/basis.cm
+
+  ref.sig
+  ref.sml
