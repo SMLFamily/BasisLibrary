@@ -1,0 +1,22 @@
+(* sources.cm
+ *
+ * SML/NJ CM file for testing the reference implementation of
+ * SML Basis Library Proposal 2015-002.
+ *)
+
+Library
+
+  structure Tests
+
+  signature EITHER
+  structure Either
+
+is
+
+  $/basis.cm
+  ../../testing/sources.cm
+
+  tests.sml
+
+  either.sig
+  either.sml
