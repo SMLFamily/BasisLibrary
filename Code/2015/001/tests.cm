@@ -1,0 +1,15 @@
+(* sources.cm
+ *
+ * SML/NJ CM file for testing the  SML Basis Library Proposal 2015-001.
+ *)
+
+Library
+
+  structure Tests
+
+is
+
+  $/basis.cm
+  ../../testing/sources.cm
+
+  tests.sml
