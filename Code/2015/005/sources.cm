@@ -1,4 +1,4 @@
-(* mono-array.sig
+(* sources.cm
  *
  * ============================================================================
  * Copyright (c) 2015 John Reppy (http://cs.uchicago.edu/~jhr)
@@ -22,17 +22,19 @@
  * THE SOFTWARE.
  * ============================================================================
  *
- * Reference code for SML Basis Library Proposal 2015-003.
+ * CM file for SML Basis Library Proposal 2015-005.
  *)
 
-signature MONO_ARRAY_EXT =
-  sig
+Library
 
-    include MONO_ARRAY
+  signature FN
 
-    val toList : array -> elem list
+  structure Fn
 
-    val fromVector : vector -> array
-    val toVector   : array -> vector
+is
 
-  end
+  $/basis.cm
+  $/smlnj-lib.cm
+
+  fn.sig
+  fn.sml
