@@ -56,6 +56,7 @@ structure Check : sig
     val expectFalse : (unit -> bool) -> unit -> result
     val expectStr : string -> (unit -> string) -> unit -> result
     val expectInt : int -> (unit -> int) -> unit -> result
+    val expectIntInf : IntInf.int -> (unit -> IntInf.int) -> unit -> result
     val expectWrd : word -> (unit -> word) -> unit -> result
     val expectNone : (unit -> 'a option) -> unit -> result
     val expectSome : ('a * 'a -> bool) -> 'a -> (unit -> 'a option) -> unit -> result
@@ -155,6 +156,7 @@ structure Check : sig
     val expectFalse = expect Bool.not
     fun expectStr (s : string) = expectVal (op =) s
     fun expectInt (i : int) = expectVal (op =) i
+    fun expectIntInf (i : IntInf.int) = expectVal (op =) i
     fun expectWrd (w : word) = expectVal (op =) w
     fun expectNone tst = expect (fn NONE => true | _ => false) tst
     fun expectSome eq v = expect (fn SOME v' => eq(v, v') | _ => false)
