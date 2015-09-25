@@ -2,6 +2,7 @@
 ### Addition of `Counter` module
 
 **Author:** Some Author<br/>
+**Managing editor:** Some Editor<br/>
 **Last revised:** August 25, 2015<br/>
 **Status:** proposed<br/>
 **Discussion:** [issue #XX](https://github.com/SMLFamily/BasisLibrary/issues/XX)<br/>
