@@ -30,4 +30,4 @@ We need to develop a process for how to handling proposals.  Issues include
 - how should proposals be submitted (is there an editor?)
 - how to resolve discussion and approve a proposal
 
-One possible model is the [SFRI](http://srfi.schemers.org) process.
+One possible model is the [SRFI](http://srfi.schemers.org) process.
