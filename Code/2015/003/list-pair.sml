@@ -132,4 +132,26 @@ structure ListPairExt : LIST_PAIR_EXT =
 	    lp (0, l1, l2)
 	  end
 
+    fun unzipMap f l = let
+	  fun mapf ([], l1, l2) = (List.rev l1, List.rev l2)
+	    | mapf (x::xs, l1, l2) = let
+		val (y1, y2) = f x
+		in
+		  mapf (xs, y1::l1, y2::l2)
+		end
+	  in
+	    mapf (l, [], [])
+	  end
+
+    fun unzipMapi f l = let
+	  fun mapf ([], _, l1, l2) = (List.rev l1, List.rev l2)
+	    | mapf (x::xs, i, l1, l2) = let
+		val (y1, y2) = f (i, x)
+		in
+		  mapf (xs, i+1, y1::l1, y2::l2)
+		end
+	  in
+	    mapf (l, 0, [], [])
+	  end
+
   end

@@ -43,4 +43,8 @@ signature LIST_PAIR_EXT =
     val foldri		: (int * 'a * 'b * 'c -> 'c) -> 'c -> 'a list * 'b list -> 'c
     val foldriEq	: (int * 'a * 'b * 'c -> 'c) -> 'c -> 'a list * 'b list -> 'c
 
+  (* added 2015-10-24 *)
+    val unzipMap	: ('a -> 'b * 'c) -> 'a list -> 'b list * 'c list
+    val unzipMapi	: (int * 'a -> 'b * 'c) -> 'a list -> 'b list * 'c list
+
   end

@@ -51,4 +51,8 @@ structure Fn : FN =
 	      fn x => repeatF (n, x)
 	    end)
 
+    fun equal a b = (a = b)
+
+    fun notEqual a b = (a <> b)
+
   end
