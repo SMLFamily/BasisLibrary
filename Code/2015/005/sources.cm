@@ -33,8 +33,12 @@ Library
 
 is
 
+(* use the original Basis to compile this proposal *)
+#if ((SMLNJ_VERSION = 110) andalso (SMLNJ_MINOR_VERSION >= 79))
+  $/basis-2004.cm
+#else
   $/basis.cm
-  $/smlnj-lib.cm
+#endif
 
   fn.sig
   fn.sml
