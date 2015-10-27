@@ -154,4 +154,22 @@ structure ListPairExt : LIST_PAIR_EXT =
 	    mapf (l, 0, [], [])
 	  end
 
+    fun find pred = let
+	  fun findp ([], _) = NONE
+	    | findp (_, []) = NONE
+	    | findp (x::xs, y::ys) = if pred(x, y) then SOME(x, y) else findp(xs, ys)
+	  in
+	    findp
+	  end
+
+    fun findi pred (l1, l2) = let
+	  fun findp (_, [], _) = NONE
+	    | findp (_, _, []) = NONE
+	    | findp (i, x::xs, y::ys) = if pred(i, x, y)
+		then SOME(i, x, y)
+		else findp(i+1, xs, ys)
+	  in
+	    findp (0, l1, l2)
+	  end
+
   end
