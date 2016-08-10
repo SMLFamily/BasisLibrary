@@ -2,17 +2,17 @@
  *
  * ============================================================================
  * Copyright (c) 2015 John Reppy (http://cs.uchicago.edu/~jhr)
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,6 +53,12 @@ structure Tests =
 	  test "map-2" (expectVal' (INR "17") (fn () => map (itos, itos) (INR 17)));
 	  test "map-3" (expectVal' (INL 17) (fn () => map (ident, itos) (INL 17)));
 	  test "map-4" (expectVal' (INR "17") (fn () => map (ident, itos) (INR 17)));
+	(* test mapLeft *)
+	  test "mapLeft-1" (expectVal' (INL "17") (fn () => mapLeft itos (INL 17)));
+	  test "mapLeft-2" (expectVal' (INR 17) (fn () => mapLeft itos (INR 17)));
+	(* test mapRight *)
+	  test "mapRight-1" (expectVal' (INL 17) (fn () => mapRight itos (INL 17)));
+	  test "mapRight-2" (expectVal' (INR "17") (fn () => mapRight itos (INR 17)));
 	(* test app *)
 	  test "app-1" (expectVal' "17"
 		(withRef "" (fn r => app (fn x => r := itos x, fn x => r := itos x) (INL 17))));
@@ -62,6 +68,16 @@ structure Tests =
 	    (withRef "" (fn r => app (fn x => r := itos(x-1), fn x => r := itos(x+1)) (INL 17))));
 	  test "app-4" (expectVal' "18"
 	    (withRef "" (fn r => app (fn x => r := itos(x-1), fn x => r := itos(x+1)) (INR 17))));
+	(* test appLeft *)
+	  test "appLeft-1" (expectVal' "17"
+		(withRef "%%" (fn r => appLeft (fn x => r := itos x) (INL 17))));
+	  test "appLeft-2" (expectVal' "%%"
+	    (withRef "%%" (fn r => appLeft (fn x => r := itos x) (INR 17))));
+	(* test appRight *)
+	  test "appRight-1" (expectVal' "%%"
+	    (withRef "%%" (fn r => appRight (fn x => r := itos(x+1)) (INL 17))));
+	  test "appRight-2" (expectVal' "18"
+	    (withRef "%%" (fn r => appRight (fn x => r := itos(x+1)) (INR 17))));
 	(* test fold *)
 	  test "fold-1" (expectInt 16 (fn () => fold (Int.-, Int.+) 1 (INL 17)));
 	  test "fold-2" (expectInt 18 (fn () => fold (Int.-, Int.+) 1 (INR 17)));
