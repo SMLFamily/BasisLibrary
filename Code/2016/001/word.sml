@@ -40,6 +40,21 @@ structure WordExt : WORD_EXT =
             cnt (w, 0)
           end
 
+  (* the following straight-line version works for 8-bit words and only uses addition,
+   * logical and, and shift operations
+    fun popCount (w : Word8.word) = let
+        (* pop count of each 2 bits into those 2 bits *)
+          val w = w - Word8.andb(Word8.>>(w, 0w1), 0wx55)
+        (* pop count of each 4 bits into those 4 bits *)
+          val w = Word8.andb(w, 0wx33) + Word8.andb(Word8.>>(w, 0w2), 0wx33)
+        (* pop count of each 8 bits into those 8 bits *)
+          val w = w + Word8.>>(w, 0w4)
+	  in
+          (* mask out result *)
+	    Word8.toIntX (Word8.andb(w, 0wx0F))
+	  end
+   *)
+
   (* the following straight-line version works for 32-bit words and only uses addition,
    * logical and, and shift operations
     fun popCount (w : Word32.word) = let
