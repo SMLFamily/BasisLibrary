@@ -48,9 +48,9 @@ functor MonoBufferFn (
     type array_slice = AS.slice
 
     datatype buf = BUF of {
-	content : array ref,	(* array for holding content *)
-	len : int ref,		(* current length of content *)
-	initLen : int		(* initial size *)
+        content : array ref,    (* array for holding content *)
+        len : int ref,          (* current length of content *)
+        initLen : int           (* initial size *)
       }
 
   (* default initial size *)
@@ -59,73 +59,73 @@ functor MonoBufferFn (
     val maxLen = Int.min(V.maxLen, A.maxLen)
 
     fun new hint = let
-	  val n = if (hint < 0) orelse (V.maxLen < hint)
-	  	then raise Size
-		else if (hint = 0) then defaultInitLen
-		else hint
-	  in
-	    BUF{
-		content = ref(A.array(n, defaultElem)),
-		len = ref 0,
-		initLen = n
-	      }
-	  end
+          val n = if (hint < 0) orelse (V.maxLen < hint)
+                then raise Size
+                else if (hint = 0) then defaultInitLen
+                else hint
+          in
+            BUF{
+                content = ref(A.array(n, defaultElem)),
+                len = ref 0,
+                initLen = n
+              }
+          end
 
     fun contents (BUF{content=ref arr, len=ref n, ...}) =
-	  AS.vector (AS.slice (arr, 0, SOME n))
+          AS.vector (AS.slice (arr, 0, SOME n))
 
     fun length (BUF{len=ref n, ...}) = n
 
     fun clear (BUF{len, ...}) = (len := 0)
 
     fun reset (BUF{content, len, initLen}) = (
-	  len := 0;
-	  if (A.length(!content) <> initLen)
-	    then content := A.array(initLen, defaultElem)
-	    else ())
+          len := 0;
+          if (A.length(!content) <> initLen)
+            then content := A.array(initLen, defaultElem)
+            else ())
 
   (* ensure that the content array has space for amt elements *)
     fun ensureCapacity (content, len, amt) = let
-	  val capacity = (len + amt) handle Overflow => maxLen
-	  in
-	    if (A.length(!content) < capacity)
-	      then let
-		val newArr = A.array(capacity, defaultElem)
-		in
-		  AS.copy{dst = newArr, di = 0, src = AS.slice(!content, 0, SOME len)};
-		  content := newArr
-		end
-	      else ()
-	  end
+          val capacity = (len + amt) handle Overflow => maxLen
+          in
+            if (A.length(!content) < capacity)
+              then let
+                val newArr = A.array(capacity, defaultElem)
+                in
+                  AS.copy{dst = newArr, di = 0, src = AS.slice(!content, 0, SOME len)};
+                  content := newArr
+                end
+              else ()
+          end
 
     fun reserve (_, 0) = ()
       | reserve (BUF{content, len=ref len, ...}, n) =
-	  if (n < 0) then raise Size
-	  else ensureCapacity (content, len, n)
+          if (n < 0) then raise Size
+          else ensureCapacity (content, len, n)
 
     fun add1 (BUF{content, len, ...}, elem) = (
-	  ensureCapacity(content, !len, 1);
-	  A.update(!content, !len, elem);
-	  len := !len + 1)
+          ensureCapacity(content, !len, 1);
+          A.update(!content, !len, elem);
+          len := !len + 1)
 
     fun addVec (BUF{content, len, ...}, vec) = (
-	  ensureCapacity(content, !len, V.length vec);
-	  A.copyVec{dst = !content, di = !len, src = vec};
-	  len := !len + V.length vec)
+          ensureCapacity(content, !len, V.length vec);
+          A.copyVec{dst = !content, di = !len, src = vec};
+          len := !len + V.length vec)
 
     fun addSlice (BUF{content, len, ...}, slice) = (
-	  ensureCapacity(content, !len, VS.length slice);
-	  AS.copyVec{dst = !content, di = !len, src = slice};
-	  len := !len + VS.length slice)
+          ensureCapacity(content, !len, VS.length slice);
+          AS.copyVec{dst = !content, di = !len, src = slice};
+          len := !len + VS.length slice)
 
     fun addArr (BUF{content, len, ...}, arr) = (
-	  ensureCapacity(content, !len, A.length arr);
-	  A.copy{dst = !content, di = !len, src = arr};
-	  len := !len + A.length arr)
+          ensureCapacity(content, !len, A.length arr);
+          A.copy{dst = !content, di = !len, src = arr};
+          len := !len + A.length arr)
 
     fun addArrSlice (BUF{content, len, ...}, slice) = (
-	  ensureCapacity(content, !len, AS.length slice);
-	  AS.copy{dst = !content, di = !len, src = slice};
-	  len := !len + AS.length slice)
+          ensureCapacity(content, !len, AS.length slice);
+          AS.copy{dst = !content, di = !len, src = slice};
+          len := !len + AS.length slice)
 
   end

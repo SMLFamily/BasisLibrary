@@ -1,4 +1,4 @@
-(* mono-buffer.sml
+(* tests.cm
  *
  * ============================================================================
  * Copyright (c) 2018 John Reppy (http://cs.uchicago.edu/~jhr)
@@ -22,35 +22,23 @@
  * THE SOFTWARE.
  * ============================================================================
  *
- * Reference code for SML Basis Library Proposal 2018-001.
- *
- * This proposal supersedes 2015-004.
+ * SML/NJ CM file for testing the reference implementation of
+ * SML Basis Library Proposal 2018-001.
  *)
 
-structure Word8Buffer : MONO_BUFFER
-                          where type elem = Word8.word
-                            and type vector = Word8Vector.vector
-                            and type slice = Word8VectorSlice.slice
-                            and type array = Word8Array.array
-                            and type array_slice = Word8ArraySlice.slice
-  = MonoBufferFn (
-      structure V = Word8Vector
-      structure VS = Word8VectorSlice
-      structure A = Word8Array
-      structure AS = Word8ArraySlice
-      val defaultElem : Word8.word = 0w0
-    );
+Library
 
-structure CharBuffer : MONO_BUFFER
-                          where type elem = Char.char
-                            and type vector = CharVector.vector
-                            and type slice = CharVectorSlice.slice
-                            and type array = CharArray.array
-                            and type array_slice = CharArraySlice.slice
-  = MonoBufferFn (
-      structure V = CharVector
-      structure VS = CharVectorSlice
-      structure A = CharArray
-      structure AS = CharArraySlice
-      val defaultElem : Char.char = #"\000"
-    );
+  structure Tests
+
+  signature MONO_BUFFER
+
+  structure CharBuffer
+  structure Word8Buffer
+
+is
+
+  $/basis.cm
+  ../../testing/sources.cm
+  sources.cm
+
+  tests.sml
