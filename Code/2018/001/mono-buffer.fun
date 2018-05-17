@@ -74,7 +74,15 @@ functor MonoBufferFn (
     fun contents (BUF{content=ref arr, len=ref n, ...}) =
           AS.vector (AS.slice (arr, 0, SOME n))
 
+    fun copy {src=BUF{content=ref arr, len=ref n, ...}, dst, di} =
+          AS.copy {src = AS.slice (arr, 0, SOME n), dst = dst, di = di}
+
     fun length (BUF{len=ref n, ...}) = n
+
+    fun sub (BUF{content=ref arr, len=ref n, ...}, i) =
+          if (i < 0) orelse (n <= i)
+            then raise Subscript
+            else A.sub(arr, i)
 
     fun clear (BUF{len, ...}) = (len := 0)
 

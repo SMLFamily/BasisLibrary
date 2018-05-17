@@ -44,7 +44,11 @@ signature MONO_BUFFER =
 
     val contents : buf -> vector
 
+    val copy : {src : buf, dst : array, di : int} -> unit
+
     val length : buf -> int
+
+    val sub : buf * int -> elem
 
     val clear : buf -> unit
 
