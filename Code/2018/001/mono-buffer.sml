@@ -27,7 +27,7 @@
  * This proposal supersedes 2015-004.
  *)
 
-structure Word8Buffer : MONO_BUFFER
+structure Word8Buffer :> MONO_BUFFER
                           where type elem = Word8.word
                             and type vector = Word8Vector.vector
                             and type slice = Word8VectorSlice.slice
@@ -41,7 +41,7 @@ structure Word8Buffer : MONO_BUFFER
       val defaultElem : Word8.word = 0w0
     );
 
-structure CharBuffer : MONO_BUFFER
+structure CharBuffer :> MONO_BUFFER
                           where type elem = Char.char
                             and type vector = CharVector.vector
                             and type slice = CharVectorSlice.slice
