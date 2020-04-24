@@ -1,0 +1,7 @@
+** Testing Ref
+-- Ref.exchange                         ok
+-- Ref.swap                             ok
+-- Ref.app                              ok
+-- Ref.map                              ok
+-- Ref.modify                           ok
+** Summary for Ref: 5 tests; 5 passed
